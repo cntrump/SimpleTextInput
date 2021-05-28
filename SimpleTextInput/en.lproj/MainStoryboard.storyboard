@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4431.1" systemVersion="13A464" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="GoS-DU-0yT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GoS-DU-0yT">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3465.2"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -9,19 +13,25 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="APLViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="NHR-Ck-Mwr" customClass="APLEditableCoreTextView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHR-Ck-Mwr" customClass="APLEditableCoreTextView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="editableCoreTextViewDelegate" destination="vXZ-lx-hvc" id="p7h-t0-KId"/>
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="g9c-Sc-DWa"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NHR-Ck-Mwr" firstAttribute="leading" secondItem="g9c-Sc-DWa" secondAttribute="leading" id="Fel-Gc-yBa"/>
+                            <constraint firstItem="NHR-Ck-Mwr" firstAttribute="bottom" secondItem="g9c-Sc-DWa" secondAttribute="bottom" id="Wzc-6e-zLu"/>
+                            <constraint firstItem="g9c-Sc-DWa" firstAttribute="top" secondItem="NHR-Ck-Mwr" secondAttribute="top" id="uCn-cg-cZG"/>
+                            <constraint firstItem="g9c-Sc-DWa" firstAttribute="trailing" secondItem="NHR-Ck-Mwr" secondAttribute="trailing" id="yfx-gq-cwx"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oxA-iw-5E5"/>
                     <connections>
@@ -30,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="359" y="-289"/>
+            <point key="canvasLocation" x="520.28985507246375" y="-193.52678571428569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jV4-5H-aql">
@@ -38,7 +48,7 @@
                 <navigationController id="GoS-DU-0yT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BcH-7x-nEZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -48,26 +58,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rvE-9y-NYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="-289"/>
+            <point key="canvasLocation" x="-101.44927536231884" y="-193.52678571428569"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="APLEditableCoreTextView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/APLEditableCoreTextView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="editableCoreTextViewDelegate"/>
-            </relationships>
-        </class>
-        <class className="APLViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/APLViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="editableCoreTextView" candidateClass="APLEditableCoreTextView"/>
-            </relationships>
-        </class>
-    </classes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
