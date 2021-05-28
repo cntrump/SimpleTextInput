@@ -171,6 +171,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
 			// The text range for this line intersects our selection range.
             CGFloat xStart = CTLineGetOffsetForStringIndex(line, intersection.location, NULL);
             CGFloat xEnd = CTLineGetOffsetForStringIndex(line, intersection.location + intersection.length, NULL);
+            xEnd = MAX(xStart, xEnd);
             CGPoint origin;
 			// Get coordinate and bounds information for the intersection text range.
             CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 0), &origin);
