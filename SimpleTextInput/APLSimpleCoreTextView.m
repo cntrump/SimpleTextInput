@@ -228,8 +228,9 @@ NSRange RangeIntersection(NSRange first, NSRange second);
     if (self.contentText.length == 0) {
         CGPoint origin = CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds) - self.font.leading);
 		// Note: using fabs() for typically negative descender from fonts.
+        CGFloat h = self.font.ascender + fabs(self.font.descender);
 
-        return CGRectMake(origin.x, origin.y - fabs(self.font.descender), 3, self.font.ascender + fabs(self.font.descender));
+        return CGRectMake(origin.x, origin.y - h, 3, h);
     }
 
 	// Iterate over our CTLines, looking for the line that encompasses the given range.
@@ -247,9 +248,10 @@ NSRange RangeIntersection(NSRange first, NSRange second);
         CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
         CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesCount - 1, 0), &origin);
 		// Place point after last line, including any font leading spacing if applicable.
-        origin.y -= self.font.leading;
+        CGFloat h = ascent + descent;
+        origin.y -= self.font.leading + h;
 
-        return CGRectMake(xPos, origin.y - descent, 3, ascent + descent);
+        return CGRectMake(xPos, origin.y - descent, 3, h);
     }
 
     // Regular case, caret somewhere within our text content range.
