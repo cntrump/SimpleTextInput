@@ -84,6 +84,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     // Add tap gesture recognizer to let the user enter editing mode.
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     [self addGestureRecognizer:tapGestureRecognizer];
@@ -609,7 +610,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 - (NSDictionary *)textStylingAtPosition:(UITextPosition *)position inDirection:(UITextStorageDirection)direction
 {
     // This sample assumes all text is single-styled, so this is easy.
-    return @{ UITextInputTextFontKey : self.textView.font };
+    return @{ NSFontAttributeName : self.textView.font };
 }
 
 

@@ -61,7 +61,7 @@
 @property (nonatomic) NSRange markedTextRange; // Marked text range (for input method marked text).
 @property (nonatomic) NSRange selectedTextRange; // Selected text range.
 
-- (CGRect)caretRectForIndex:(int)index;
+- (CGRect)caretRectForIndex:(NSUInteger)index;
 - (CGRect)firstRectForRange:(NSRange)range;
 - (NSInteger)closestIndexToPoint:(CGPoint)point;
 

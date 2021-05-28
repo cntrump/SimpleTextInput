@@ -57,7 +57,7 @@
 
 @interface APLSimpleCoreTextView ()
 
-@property (nonatomic) NSDictionary *attributes;
+@property (nonatomic) NSDictionary<NSAttributedStringKey, id> *attributes;
 @property (nonatomic) APLSimpleCaretView *caretView; // Subview that draws the insertion caret.
 
 @end
@@ -221,7 +221,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
 /*
  Public method to determine the CGRect for the insertion point or selection, used when creating or updating the simple caret view instance.
  */
-- (CGRect)caretRectForIndex:(int)index
+- (CGRect)caretRectForIndex:(NSUInteger)index
 {
     // Special case, no text.
     if (self.contentText.length == 0) {
@@ -367,13 +367,8 @@ NSRange RangeIntersection(NSRange first, NSRange second);
     if (newFont != _font) {
         _font = newFont;
 
-        // Find matching CTFont via name and size.
-        CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef) _font.fontName, _font.pointSize, NULL);
-
-        // Set CTFont instance in our attributes dictionary, to be set on our attributed string.
-        self.attributes = @{ (NSString *)kCTFontAttributeName : (__bridge id)ctFont };
-
-        CFRelease(ctFont);
+        // Set UIFont instance in our attributes dictionary, to be set on our attributed string.
+        self.attributes = @{ NSFontAttributeName : _font };
 
         [self textChanged];
     }
