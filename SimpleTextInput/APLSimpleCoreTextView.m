@@ -271,7 +271,9 @@ NSRange RangeIntersection(NSRange first, NSRange second);
             CGFloat y = origin.y - descent;
             CGFloat h = ascent + descent;
 
+            // Next line origin
             if (index > 0 && [self.contentText characterAtIndex:(index - 1)] == '\n') {
+                xPos = 0;
                 y -= h;
             }
 
