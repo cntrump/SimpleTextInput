@@ -174,7 +174,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
             xEnd = MAX(xStart, xEnd);
             CGPoint origin;
 			// Get coordinate and bounds information for the intersection text range.
-            CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 0), &origin);
+            CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 1), &origin);
             CGFloat ascent, descent;
             CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
 			// Create a rect for the intersection and draw it with selection color.
@@ -246,7 +246,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
         CGPoint origin;
         CGFloat ascent, descent;
         CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
-        CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesCount - 1, 0), &origin);
+        CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesCount - 1, 1), &origin);
 		// Place point after last line, including any font leading spacing if applicable.
         CGFloat h = ascent + descent;
         origin.y -= self.font.leading + h;
@@ -265,7 +265,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
             CGPoint origin;
             CGFloat ascent, descent;
             CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
-            CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 0), &origin);
+            CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 1), &origin);
 
             // Make a small "caret" rect at the index position.
             CGFloat y = origin.y - descent;
@@ -307,7 +307,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
             CGFloat xStart = CTLineGetOffsetForStringIndex(line, index, NULL);
             CGFloat xEnd = CTLineGetOffsetForStringIndex(line, finalIndex, NULL);
             CGPoint origin;
-            CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 0), &origin);
+            CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 1), &origin);
             CGFloat ascent, descent;
             CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
 
