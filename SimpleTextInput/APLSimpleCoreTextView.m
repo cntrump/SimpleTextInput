@@ -267,8 +267,15 @@ NSRange RangeIntersection(NSRange first, NSRange second);
             CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
             CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 0), &origin);
 
-			// Make a small "caret" rect at the index position.
-            return CGRectMake(xPos, origin.y - descent, 3, ascent + descent);
+            // Make a small "caret" rect at the index position.
+            CGFloat y = origin.y - descent;
+            CGFloat h = ascent + descent;
+
+            if (index > 0 && [self.contentText characterAtIndex:(index - 1)] == '\n') {
+                y -= h;
+            }
+
+            return CGRectMake(xPos, y, 3, h);
         }
     }
 
