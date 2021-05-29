@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15B826BB2661E2360015CC43 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B826BA2661E2360015CC43 /* Launch Screen.storyboard */; };
 		2806C4ED1733347C00AE3BDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2806C4EC1733347C00AE3BDF /* UIKit.framework */; };
 		2806C4EF1733347C00AE3BDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2806C4EE1733347C00AE3BDF /* Foundation.framework */; };
 		2806C4F11733347C00AE3BDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2806C4F01733347C00AE3BDF /* CoreGraphics.framework */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15B826BA2661E2360015CC43 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2806C4E91733347C00AE3BDF /* SimpleTextInput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTextInput.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2806C4EC1733347C00AE3BDF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2806C4EE1733347C00AE3BDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -134,6 +136,7 @@
 				2806C4FE1733347C00AE3BDF /* Default.png */,
 				2806C5001733347C00AE3BDF /* Default@2x.png */,
 				2806C5021733347C00AE3BDF /* Default-568h@2x.png */,
+				15B826BA2661E2360015CC43 /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B826BB2661E2360015CC43 /* Launch Screen.storyboard in Resources */,
 				2806C5011733347C00AE3BDF /* Default@2x.png in Resources */,
 				2806C5061733347C00AE3BDF /* MainStoryboard.storyboard in Resources */,
 				2806C5031733347C00AE3BDF /* Default-568h@2x.png in Resources */,
@@ -308,6 +312,7 @@
 		2806C50D1733347C00AE3BDF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleTextInput/SimpleTextInput-Prefix.pch";
 				INFOPLIST_FILE = "SimpleTextInput/SimpleTextInput-Info.plist";
@@ -320,6 +325,7 @@
 		2806C50E1733347C00AE3BDF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleTextInput/SimpleTextInput-Prefix.pch";
 				INFOPLIST_FILE = "SimpleTextInput/SimpleTextInput-Info.plist";
