@@ -19,7 +19,7 @@ Please see "Communicating with the Text Input System" in Text and Web Programmin
 http://developer.apple.com/iphone/library/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/CustomTextProcessing/CustomTextProcessing.html#//apple_ref/doc/uid/TP40009542-CH4-SW4
 
 Important: 
-This sample code should not be considered a template for a text editor, but rather as an example of how to bind the text input system to a pre-existing text editor. The project's use of CoreText is naive and inefficient; it deals only with left-to-right text layout, and it is by no means a good template for any text editor. It is a implementation meant only to illustrate how to bind the system keyboard (that is, the text input system) to some pre-existing text editor.
+**This sample code should not be considered a template for a text editor, but rather as an example of how to bind the text input system to a pre-existing text editor. The project's use of CoreText is naive and inefficient; it deals only with left-to-right text layout, and it is by no means a good template for any text editor. It is a implementation meant only to illustrate how to bind the system keyboard (that is, the text input system) to some pre-existing text editor.**
 
 
 Classes in the Project
