@@ -148,16 +148,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 - (void)tap:(UITapGestureRecognizer *)tap
 {
     if ([self isFirstResponder]) {
-		// Already in editing mode, set insertion point (via selectedTextRange).
-        [self.inputDelegate selectionWillChange:self];
-
-        // Find and update insertion point in underlying APLSimpleCoreTextView.
-        NSInteger index = [self.textView closestIndexToPoint:[tap locationInView:self.textView]];
-        self.textView.markedTextRange = NSMakeRange(NSNotFound, 0);
-        self.textView.selectedTextRange = NSMakeRange(index, 0);
-
-        // Let inputDelegate know selection has changed.
-        [self.inputDelegate selectionDidChange:self];
+        [self updateCursorAtPoint:[tap locationInView:self.textView]];
     }
     else {
 		// Inform controller that we're about to enter editing mode.
@@ -186,6 +177,18 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 }
 #endif
 
+- (void)updateCursorAtPoint:(CGPoint)point {
+    // Already in editing mode, set insertion point (via selectedTextRange).
+    [self.inputDelegate selectionWillChange:self];
+
+    // Find and update insertion point in underlying APLSimpleCoreTextView.
+    NSInteger index = [self.textView closestIndexToPoint:point];
+    self.textView.markedTextRange = NSMakeRange(NSNotFound, 0);
+    self.textView.selectedTextRange = NSMakeRange(index, 0);
+
+    // Let inputDelegate know selection has changed.
+    [self.inputDelegate selectionDidChange:self];
+}
 
 #pragma mark - UITextInput methods
 
@@ -700,6 +703,19 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
     self.textView.selectedTextRange = selectedNSRange;
 }
 
+/* The following three optional methods are for clients that wish to display a floating cursor to
+ * guide user manipulation of the selected text range via the system-provided keyboard. If a client
+ * does not implement these methods, user feedback will be limited to the outcome after setting the
+ * selected text range using positions resulting from hit testing. */
+- (void)beginFloatingCursorAtPoint:(CGPoint)point API_AVAILABLE(ios(9.0)) {
+}
+
+- (void)updateFloatingCursorAtPoint:(CGPoint)point API_AVAILABLE(ios(9.0)) {
+    [self updateCursorAtPoint:[self.textView convertPoint:point fromView:self]];
+}
+
+- (void)endFloatingCursor API_AVAILABLE(ios(9.0)) {
+}
 
 @end
 
