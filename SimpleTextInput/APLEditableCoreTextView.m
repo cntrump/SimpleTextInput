@@ -505,10 +505,10 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
  UITextInput protocol required method.
  Return the base writing direction for a position in the text going in a specified text direction.
  */
-- (UITextWritingDirection)baseWritingDirectionForPosition:(UITextPosition *)position inDirection:(UITextStorageDirection)direction
+- (NSWritingDirection)baseWritingDirectionForPosition:(UITextPosition *)position inDirection:(UITextStorageDirection)direction
 {
     // This sample assumes left-to-right text direction and does not support bi-directional or right-to-left text.
-    return UITextWritingDirectionLeftToRight;
+    return NSWritingDirectionLeftToRight;
 }
 
 
@@ -516,7 +516,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
  UITextInput protocol required method.
  Set the base writing direction for a given range of text in a document.
  */
-- (void)setBaseWritingDirection:(UITextWritingDirection)writingDirection forRange:(UITextRange *)range
+- (void)setBaseWritingDirection:(NSWritingDirection)writingDirection forRange:(UITextRange *)range
 {
     // This sample assumes left-to-right text direction and does not support bi-directional or right-to-left text.
 }

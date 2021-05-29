@@ -29,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		15B826BA2661E2360015CC43 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		15B826BC266257C60015CC43 /* SimpleTextInput.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextInput.entitlements; sourceTree = "<group>"; };
 		2806C4E91733347C00AE3BDF /* SimpleTextInput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTextInput.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2806C4EC1733347C00AE3BDF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2806C4EE1733347C00AE3BDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +106,7 @@
 		2806C4F21733347C00AE3BDF /* SimpleTextInput */ = {
 			isa = PBXGroup;
 			children = (
+				15B826BC266257C60015CC43 /* SimpleTextInput.entitlements */,
 				2857B12817337C0E00295668 /* ReadMe.md */,
 				2806C5041733347C00AE3BDF /* MainStoryboard.storyboard */,
 				2806C50F173334D200AE3BDF /* APLSimpleCoreTextView.h */,
@@ -312,12 +314,16 @@
 		2806C50D1733347C00AE3BDF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SimpleTextInput/SimpleTextInput.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleTextInput/SimpleTextInput-Prefix.pch";
 				INFOPLIST_FILE = "SimpleTextInput/SimpleTextInput-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -325,12 +331,16 @@
 		2806C50E1733347C00AE3BDF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SimpleTextInput/SimpleTextInput.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleTextInput/SimpleTextInput-Prefix.pch";
 				INFOPLIST_FILE = "SimpleTextInput/SimpleTextInput-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
