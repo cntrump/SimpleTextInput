@@ -54,11 +54,12 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 
 #import "APLIndexedPosition.h"
 #import "APLIndexedRange.h"
+#import "APLIndexedSelectionRect.h"
 #import "APLSimpleCoreTextView.h"
 
 
 // We use a tap gesture recognizer to allow the user to tap to invoke text edit mode.
-@interface APLEditableCoreTextView () <UIGestureRecognizerDelegate>
+@interface APLEditableCoreTextView () <UIGestureRecognizerDelegate, UITextInteractionDelegate>
 
 @property (nonatomic) APLSimpleCoreTextView *textView;
 @property (nonatomic) NSMutableString *text;
@@ -68,6 +69,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
  */
 @property (nonatomic) UITextInputStringTokenizer *tokenizer;
 
+@property (nonatomic) UITextInteraction *selectionInteraction API_AVAILABLE(ios(13.0));
 
 - (void)tap:(UITapGestureRecognizer *)tap;
 
@@ -89,6 +91,13 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     [self addGestureRecognizer:tapGestureRecognizer];
     tapGestureRecognizer.delegate = self;
+
+    if (@available(iOS 13.0, *)) {
+        self.selectionInteraction = [UITextInteraction textInteractionForMode:UITextInteractionModeEditable];
+        self.selectionInteraction.delegate = self;
+        self.selectionInteraction.textInput = self;
+        [self addInteraction:self.selectionInteraction];
+    }
 
     // Create our tokenizer and text storage.
     self.tokenizer = [[UITextInputStringTokenizer alloc] initWithTextInput:self];
@@ -569,7 +578,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 - (UITextPosition *)closestPositionToPoint:(CGPoint)point
 {
 	// Not implemented in this sample. Could utilize underlying APLSimpleCoreTextView:closestIndexToPoint:point.
-    return nil;
+    return [APLIndexedPosition positionWithIndex:[self.textView closestIndexToPoint:[self convertPoint:point toView:self.textView]]];
 }
 
 /*
@@ -579,7 +588,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 - (UITextPosition *)closestPositionToPoint:(CGPoint)point withinRange:(UITextRange *)range
 {
 	// Not implemented in this sample. Could utilize underlying APLSimpleCoreTextView:closestIndexToPoint:point.
-    return nil;
+    return [APLIndexedPosition positionWithIndex:[self.textView closestIndexToPoint:[self convertPoint:point toView:self.textView]]];
 }
 
 /*
@@ -589,7 +598,8 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 - (UITextRange *)characterRangeAtPoint:(CGPoint)point
 {
 	// Not implemented in this sample. Could utilize underlying APLSimpleCoreTextView:closestIndexToPoint:point.
-    return nil;
+    NSInteger index = [self.textView closestIndexToPoint:[self convertPoint:point toView:self.textView]];
+    return [APLIndexedRange indexedRangeWithRange:NSMakeRange(index, 1)];
 }
 
 
@@ -597,10 +607,24 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
  UITextInput protocol required method.
  Return an array of UITextSelectionRects.
  */
-- (NSArray *)selectionRectsForRange:(UITextRange *)range
+- (NSArray<UITextSelectionRect *> *)selectionRectsForRange:(UITextRange *)range
 {
-    // Not implemented in this sample.
-    return nil;
+    APLIndexedRange *r = (APLIndexedRange *)range;
+    NSArray<NSValue *> *rects = [self.textView selectionRectsForRange:r.range];
+    if (rects.count == 0) {
+        return nil;
+    }
+
+    NSMutableArray<APLIndexedSelectionRect *> *selectionRects = NSMutableArray.array;
+    NSInteger count = rects.count;
+    for (NSInteger i = 0; i < count; i++) {
+        CGRect rect = rects[i].CGRectValue;
+        [selectionRects addObject:[APLIndexedSelectionRect indexedSelectionRectWithRect:rect
+                                                                          containsStart:i == 0
+                                                                            containsEnd:i == count - 1]];
+    }
+
+    return [selectionRects copy];
 } 
 
 
@@ -625,7 +649,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
  */
 - (BOOL)hasText
 {
-    return (self.text.length != 0);
+    return (self.text.length > 0);
 }
 
 
@@ -717,6 +741,11 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 - (void)endFloatingCursor API_AVAILABLE(ios(9.0)) {
 }
 
+
+#pragma mark - UITextInteraction methods
+
+- (BOOL)interactionShouldBegin:(UITextInteraction *)interaction atPoint:(CGPoint)point API_AVAILABLE(ios(13.0)) {
+    return YES;
+}
+
 @end
-
-

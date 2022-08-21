@@ -52,6 +52,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface APLSimpleCoreTextView : UIView
 
@@ -65,6 +66,10 @@
 - (CGRect)firstRectForRange:(NSRange)range;
 - (NSInteger)closestIndexToPoint:(CGPoint)point;
 
+- (NSArray<NSValue *> *)selectionRectsForRange:(NSRange)range;
+
 + (UIColor *)caretColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

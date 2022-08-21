@@ -51,6 +51,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface APLIndexedPosition : UITextPosition
 
 @property (nonatomic) NSUInteger index;
@@ -59,3 +61,5 @@
 + (instancetype)positionWithIndex:(NSUInteger)index;
 
 @end
+
+NS_ASSUME_NONNULL_END

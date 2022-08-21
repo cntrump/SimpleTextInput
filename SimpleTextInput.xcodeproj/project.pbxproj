@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15B826BB2661E2360015CC43 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B826BA2661E2360015CC43 /* Launch Screen.storyboard */; };
+		15B826BF266280480015CC43 /* APLIndexedSelectionRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B826BE266280480015CC43 /* APLIndexedSelectionRect.m */; };
 		2806C4ED1733347C00AE3BDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2806C4EC1733347C00AE3BDF /* UIKit.framework */; };
 		2806C4EF1733347C00AE3BDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2806C4EE1733347C00AE3BDF /* Foundation.framework */; };
 		2806C4F11733347C00AE3BDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2806C4F01733347C00AE3BDF /* CoreGraphics.framework */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		15B826BA2661E2360015CC43 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		15B826BC266257C60015CC43 /* SimpleTextInput.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextInput.entitlements; sourceTree = "<group>"; };
+		15B826BD266280480015CC43 /* APLIndexedSelectionRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLIndexedSelectionRect.h; sourceTree = "<group>"; };
+		15B826BE266280480015CC43 /* APLIndexedSelectionRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLIndexedSelectionRect.m; sourceTree = "<group>"; };
 		2806C4E91733347C00AE3BDF /* SimpleTextInput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTextInput.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2806C4EC1733347C00AE3BDF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2806C4EE1733347C00AE3BDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 				2806C516173336EC00AE3BDF /* APLIndexedPosition.m */,
 				2806C5171733391B00AE3BDF /* APLIndexedRange.h */,
 				2806C5181733391B00AE3BDF /* APLIndexedRange.m */,
+				15B826BD266280480015CC43 /* APLIndexedSelectionRect.h */,
+				15B826BE266280480015CC43 /* APLIndexedSelectionRect.m */,
 				2806C5071733347C00AE3BDF /* APLViewController.h */,
 				2806C5081733347C00AE3BDF /* APLViewController.m */,
 				2806C4FB1733347C00AE3BDF /* APLAppDelegate.h */,
@@ -220,6 +225,7 @@
 				2806C513173334D200AE3BDF /* APLSimpleCoreTextView.m in Sources */,
 				2806C4F91733347C00AE3BDF /* main.m in Sources */,
 				2806C514173334D200AE3BDF /* APLEditableCoreTextView.m in Sources */,
+				15B826BF266280480015CC43 /* APLIndexedSelectionRect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

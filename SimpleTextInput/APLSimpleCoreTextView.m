@@ -320,6 +320,61 @@ NSRange RangeIntersection(NSRange first, NSRange second);
     return CGRectNull;
 }
 
+- (NSArray<NSValue *> *)selectionRectsForRange:(NSRange)range {
+    NSMutableArray<NSValue *> *selectionRects = NSMutableArray.array;
+
+    if (range.location == NSNotFound || range.length == 0) {
+        return @[];
+    }
+
+    NSInteger startIndex = range.location;
+    NSInteger endIndex = NSMaxRange(range) - 1;
+
+    CFArrayRef lines = CTFrameGetLines(_ctFrame);
+    NSInteger linesCount = CFArrayGetCount(lines);
+
+    for (CFIndex linesIndex = 0; linesIndex < linesCount; linesIndex++) {
+
+        CTLineRef line = (CTLineRef)CFArrayGetValueAtIndex(lines, linesIndex);
+        CFRange lineRange = CTLineGetStringRange(line);
+
+        CGFloat xStart;
+        CGFloat xEnd;
+
+        CGPoint origin;
+        CTFrameGetLineOrigins(_ctFrame, CFRangeMake(linesIndex, 1), &origin);
+
+        CGFloat ascent, descent;
+        CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
+
+        BOOL isFinished = NO;
+
+        if (startIndex - lineRange.location >= 0) {
+            xStart = CTLineGetOffsetForStringIndex(line, startIndex, NULL);
+            xEnd = CTLineGetOffsetForStringIndex(line, lineRange.location + lineRange.length, NULL);
+        } else if (lineRange.location >= startIndex && lineRange.location <= endIndex) {
+            xStart = CTLineGetOffsetForStringIndex(line, lineRange.location, NULL);
+            xEnd = CTLineGetOffsetForStringIndex(line, lineRange.location + lineRange.length, NULL);
+            isFinished = lineRange.location == endIndex;
+        } else if (endIndex - lineRange.location >= 0) {
+            xStart = CTLineGetOffsetForStringIndex(line, lineRange.location, NULL);
+            xEnd = CTLineGetOffsetForStringIndex(line, NSMaxRange(range), NULL);
+            isFinished = YES;
+        } else {
+            continue;
+        }
+
+        CGRect rect = CGRectMake(xStart, origin.y - descent, xEnd - xStart, ascent + descent);
+        [selectionRects addObject:[NSValue valueWithCGRect:rect]];
+
+        if (isFinished) {
+            break;
+        }
+    }
+
+    return [selectionRects copy];
+}
+
 
 // Helper method to update caretView when insertion point/selection changes.
 - (void)selectionChanged

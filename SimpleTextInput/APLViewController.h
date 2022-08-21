@@ -49,6 +49,10 @@
 
 #import "APLEditableCoreTextView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface APLViewController : UIViewController <APLEditableCoreTextViewDelegate>
 
 @end
+
+NS_ASSUME_NONNULL_END

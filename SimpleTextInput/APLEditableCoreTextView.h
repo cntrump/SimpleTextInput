@@ -53,6 +53,8 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 
 #import "APLSimpleCoreTextView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class APLEditableCoreTextView;
 
 // APLEditableCoreTextViewDelegate - simple delegate protocol to notify when the APLEditableCoreTextView
@@ -69,3 +71,5 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 @property (nonatomic, weak) IBOutlet id <APLEditableCoreTextViewDelegate> editableCoreTextViewDelegate;
 
 @end
+
+NS_ASSUME_NONNULL_END
